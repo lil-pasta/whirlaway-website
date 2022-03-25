@@ -1,10 +1,13 @@
+use serde_aux::field_attributes::deserialize_number_from_string;
+use std::convert::{TryFrom, TryInto};
+
 pub enum Environment {
     Local,
     Prod,
 }
 
 impl Environment {
-    pub fn as_string(&self) -> Self {
+    pub fn as_string(&self) -> String {
         match self {
             Self::Local => "local".to_string(),
             Self::Prod => "prod".to_string(),
@@ -20,27 +23,33 @@ impl TryFrom<String> for Environment {
             "production" => Ok(Self::Prod),
             "local" => Ok(Self::Local),
             _ => Err(format!(
-                "{} is an invalid environment, use either 'production' or 'local'"
+                "{s} is an invalid environment, use either 'production' or 'local'"
             )),
         }
     }
 }
 
-#[derive(serde::Deserialize, Debug)]
+#[derive(serde::Deserialize, Clone, Debug)]
 pub struct Settings {
     pub application: ApplicationSettings,
 }
 
-#[derive(serde::Deserialize, Debug)]
+impl Settings {
+    pub fn application_address(&self) -> String {
+        format!("{}:{}", self.application.host, self.application.port)
+    }
+}
+
+#[derive(serde::Deserialize, Clone, Debug)]
 pub struct ApplicationSettings {
     host: String,
+    #[serde(deserialize_with = "deserialize_number_from_string")]
     port: u16,
 }
 
 pub fn get_conf() -> Result<Settings, config::ConfigError> {
     let base_path = std::env::current_dir().expect("failed to get current directory");
     let conf_path = base_path.join("conf");
-    let mut settings = config::Config::new();
 
     // get app environment from environment variable APP_ENVIRONMENT
     // defaults to "local"
@@ -53,8 +62,11 @@ pub fn get_conf() -> Result<Settings, config::ConfigError> {
     let env_conf_path = conf_path.join(environment.as_string());
 
     // start layering on the configurations
-    settings.merge(config::File::from(conf_path.join("base")).required(true))?;
-    settings.merge(config::File::from(env_conf_path).required(true))?;
+    let settings = config::Config::builder()
+        .add_source(config::File::from(conf_path.join("base")).required(true))
+        .add_source(config::File::from(env_conf_path).required(true))
+        .add_source(config::Environment::with_prefix("app").separator("__"))
+        .build()?;
 
-    settings.try_into()
+    settings.try_deserialize::<Settings>()
 }
