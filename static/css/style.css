@@ -1,0 +1,100 @@
+body {
+  font-family: Ariel, Helvetic, sans-serif;
+  background-image: url("../images/Logan_Squarist-44-e1472433838364.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+}
+
+/* The navigation bar */
+header {
+  background-color: #49020f;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.nav-toggle {
+  display: none;
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+}
+
+.open-nav {
+  height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+header ul {
+  padding: 0;
+}
+
+header li {
+  display: inline-block;
+  padding: 0 1.1rem;
+}
+
+header li a {
+  color: #ebd9cd;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar #logo {
+  color: #efefef;
+}
+
+.main {
+  position:  
+  background-color: #efefef;
+}
+
+.main h1 {
+  margin-top: 0;
+  padding-bottom: 1rem;
+}
+
+@media all and (max-width: 720px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header nav {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    transition: 250ms height ease-in-out;
+  }
+
+  header li {
+    display: block;
+    text-align: center;
+    padding: 1.1rem 0;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+}
