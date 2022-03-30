@@ -16,6 +16,11 @@ header {
   position: sticky;
 }
 
+div#logo a {
+  color: #efefef;
+  text-decoration: none;
+}
+
 header ul {
   padding: 0;
 }
@@ -34,6 +39,34 @@ header li a {
 main h1 {
   margin-top: 0;
   padding-bottom: 1rem;
+}
+
+.filler {
+  width: 100vw;
+}
+
+.top-filler {
+  height: 100vh;
+}
+
+.middle-filler {
+  height: 66vh;
+}
+
+.article {
+  text-align: center;
+  word-wrap: break-word;
+  font-size: calc(1.5*1rem);
+  background-color: #efefef;
+}
+
+.content-wrapper {
+  padding-top: 6vmax;
+  padding-bottom: 6vmax;
+  padding-left: 7vw;
+  padding-right: 7vw;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .page-section {
