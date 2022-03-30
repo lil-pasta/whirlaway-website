@@ -1,10 +1,8 @@
-use crate::startup::AppData;
-use actix_web::{get, web, Error, HttpResponse};
-use tera::Context;
+use actix_web::{get, http::StatusCode, Error, HttpResponse};
 
 #[get("/")]
-pub async fn home(data: web::Data<AppData>) -> Result<HttpResponse, Error> {
-    let ctx = Context::new();
-    let template = data.template.render("home/home.html", &ctx).unwrap();
-    Ok(HttpResponse::Ok().body(template))
+pub async fn home() -> Result<HttpResponse, Error> {
+    Ok(HttpResponse::build(StatusCode::OK)
+        .content_type("text/html; charset=utf-8")
+        .body(include_str!("../../static/html/whirlaway.html")))
 }
