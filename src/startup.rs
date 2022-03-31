@@ -39,6 +39,7 @@ async fn run(listener: TcpListener) -> Result<Server, anyhow::Error> {
                     .use_last_modified(true),
             )
             .service(Files::new("/static/images", "static/images").use_last_modified(true))
+            .service(Files::new("/static/js", "static/js").use_last_modified(true))
             .service(health_check)
             .service(home)
     })
