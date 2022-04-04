@@ -3,14 +3,8 @@ use crate::routes::{health_check, home};
 
 use actix_files::Files;
 use actix_web::dev::Server;
-use actix_web::{web, App, HttpServer};
+use actix_web::{App, HttpServer};
 use std::net::TcpListener;
-use std::sync::Arc;
-
-#[derive(Debug)]
-pub struct AppData {
-    pub template: Arc<tera::Tera>,
-}
 
 pub struct Application {
     port: u16,
@@ -37,26 +31,15 @@ impl Application {
 }
 
 async fn run(listener: TcpListener) -> Result<Server, anyhow::Error> {
-    let tera = Arc::new(match tera::Tera::new("templates/**/*") {
-        Ok(t) => t,
-        Err(e) => {
-            println!("{} error parsing templates. Exiting program", e);
-            std::process::exit(1);
-        }
-    });
-
     let server = HttpServer::new(move || {
         App::new()
-            .app_data(web::Data::new(AppData {
-                template: tera.clone(),
-            }))
             .service(
                 Files::new("/static/css", "static/css/")
                     .prefer_utf8(true)
                     .use_last_modified(true),
             )
-            .service(Files::new("/static/js", "static/js").use_last_modified(true))
             .service(Files::new("/static/images", "static/images").use_last_modified(true))
+            .service(Files::new("/static/js", "static/js").use_last_modified(true))
             .service(health_check)
             .service(home)
     })

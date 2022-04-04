@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: Ariel, Helvetic, sans-serif;
   background-image: url("../images/Logan_Squarist-44-e1472433838364.jpg");
@@ -41,10 +45,6 @@ main h1 {
   padding-bottom: 1rem;
 }
 
-.filler {
-  width: 100vw;
-}
-
 .top-filler {
   height: 100vh;
 }
@@ -58,14 +58,17 @@ main h1 {
   word-wrap: break-word;
   font-size: calc(1.5*1rem);
   background-color: #efefef;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .content-wrapper {
   padding-top: 6vmax;
   padding-bottom: 6vmax;
-  padding-left: 7vw;
-  padding-right: 7vw;
-  justify-content: center;
+  padding-left: 15vw;
+  padding-right: 15vw;
   margin: 0 auto;
 }
 
@@ -108,7 +111,7 @@ main h1 {
   text-decoration: underline;
 }
 
-@media all and (max-width: 780px) {
+@media all and (max-width: 860px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;

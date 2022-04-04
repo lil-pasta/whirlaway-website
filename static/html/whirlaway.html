@@ -1,6 +1,36 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <script type="text/javascript" src="/static/js/main.js" async></script>
+    <title>Whirlaway Lounge</title>
+  </head>
 
-{% block content %}
+  <body>
+    <div class="wrapper">
+      <header>
+        <div id="topnav" class="navbar">
+          <div id="logo">
+            <h1><a href="#">Whirlaway Lounge</a></h1>
+            <div id="navToggle" class="nav-toggle">
+              <svg id="hamburger" class="navIcon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" style=" fill:#ebd9cd;">
+                <path d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z"></path>
+              </svg>
+              <svg class="navIcon hidden" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" style=" fill:#ebd9cd;">
+                <path d="M 4.9902344 3.9902344 A 1.0001 1.0001 0 0 0 4.2929688 5.7070312 L 10.585938 12 L 4.2929688 18.292969 A 1.0001 1.0001 0 1 0 5.7070312 19.707031 L 12 13.414062 L 18.292969 19.707031 A 1.0001 1.0001 0 1 0 19.707031 18.292969 L 13.414062 12 L 19.707031 5.7070312 A 1.0001 1.0001 0 0 0 18.980469 3.9902344 A 1.0001 1.0001 0 0 0 18.292969 4.2929688 L 12 10.585938 L 5.7070312 4.2929688 A 1.0001 1.0001 0 0 0 4.9902344 3.9902344 z"></path></svg>
+            </div>
+          </div>
+          <nav>
+            <ul>
+              <li><a class="navlinks" href="#welcome">home</a></li>
+              <li><a class="navlinks" href="#menu">menu</a></li>
+              <li><a class="navlinks" href="#location">location</a></li>
+              <li><a class="navlinks" href="#contact">contact</a></li>
+            </ul>
+        </div>
+      </header>
 <div class="wrapper" id="page-content">  
     <main>
       <section class="filler top-filler"></section>
@@ -32,10 +62,9 @@
         </div>
       </section>
       <section class="filler middle-filler"></section>
-
-
-
     </main>
   </div>
 </div>
-{% endblock %}
+  </div>
+  </body>
+</html>
