@@ -9,6 +9,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   margin: 0;
+  overflow-anchor: none;
 }
 
 header {
@@ -45,6 +46,15 @@ main h1 {
   padding-bottom: 1rem;
 }
 
+section {
+  position: relative;
+}
+
+.filler {
+  display: flex;
+  position: relative;
+}
+
 .top-filler {
   height: 100vh;
 }
@@ -62,6 +72,7 @@ main h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  scroll-margin-top: 0px;
 }
 
 .content-wrapper {
